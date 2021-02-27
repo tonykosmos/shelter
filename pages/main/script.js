@@ -153,54 +153,55 @@ modalBody.addEventListener('mouseover', () => {
 
 // slider
 
+let items = document.querySelectorAll('.slider-items-block');
 let currentItem = 0;
 let isEnabled = true;
 
 function changeCurrentItem(n) {
-  currentItem = (n + items.length) % items.length;
+	currentItem = (n + items.length) % items.length;
 }
 
 function hideItem(direction) {
-  isEnabled = false;
-  items[currentItem].classList.add(direction);
-  items[currentItem].addEventListener('animationend', () => {
+	isEnabled = false;
+	items[currentItem].classList.add(direction);
+	items[currentItem].addEventListener('animationend', function() {
     this.classList.remove('slider-active', direction);
     this.classList.add('not-active');
-  });
+	});
 }
 
 function showItem(direction) {
-  items[currentItem].classList.add('next', direction);
-  items[currentItem].addEventListener('animationend', function () {
-    this.classList.remove('next', direction);
+	items[currentItem].classList.add('next', direction);
+	items[currentItem].addEventListener('animationend', function() {
+		this.classList.remove('next', direction);
     this.classList.add('slider-active');
     this.classList.remove('not-active');
-    isEnabled = true;
-  });
+		isEnabled = true;
+	});
 }
 
 function nextItem(n) {
-  hideItem('to-left');
-  changeCurrentItem(n + 1);
-  showItem('from-right');
+	hideItem('to-left');
+	changeCurrentItem(n + 1);
+	showItem('from-right');
 }
 
 function previousItem(n) {
-  hideItem('to-right');
-  changeCurrentItem(n - 1);
-  showItem('from-left');
+	hideItem('to-right');
+	changeCurrentItem(n - 1);
+	showItem('from-left');
 }
 
-leftArrow.addEventListener('click', () => {
-  if (isEnabled) {
-    previousItem(currentItem);
-  }
+document.querySelector('.arrow-left').addEventListener('click', function() {
+	if (isEnabled) {
+		previousItem(currentItem);
+	}
 });
 
-rightArrow.addEventListener('click', () => {
-  if (isEnabled) {
-    nextItem(currentItem);
-  }
+document.querySelector('.arrow-right').addEventListener('click', function() {
+	if (isEnabled) {
+		nextItem(currentItem);
+	}
 });
 
 request.send();
