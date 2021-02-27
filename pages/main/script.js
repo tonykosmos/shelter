@@ -197,7 +197,7 @@ leftArrow.addEventListener('click', () => {
   }
 });
 
-leftArrow.addEventListener('click', () => {
+rightArrow.addEventListener('click', () => {
   if (isEnabled) {
     nextItem(currentItem);
   }
