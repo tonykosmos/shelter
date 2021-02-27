@@ -153,7 +153,6 @@ modalBody.addEventListener('mouseover', () => {
 
 // slider
 
-let items = document.querySelectorAll('.slider-items-block');
 let currentItem = 0;
 let isEnabled = true;
 
